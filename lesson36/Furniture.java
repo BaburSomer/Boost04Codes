@@ -1,11 +1,17 @@
 package com.bilgeadam.course04.lesson36;
 
 public abstract class Furniture {
-	private IFurnitureStyle kind;
+	private IFurnitureStyle style;
 	private String color;
 	private int price;
 	
-	protected abstract void construct();
+	public abstract String getName();
+	public abstract void construct(String line);
+	
+	public Furniture(IFurnitureStyle style) {
+		super();
+		this.style = style;
+	}
 	
 	public Furniture(String color, int price) {
 		super();
@@ -13,17 +19,17 @@ public abstract class Furniture {
 		this.price = price;
 	}
 
-	public IFurnitureStyle getKind() {
-		return kind;
+	public IFurnitureStyle getStyle() {
+		return style;
 	}
 
+	public String getStyleInfo() {
+		return style.giveSomeInformation();
+	}
+	
 	@Override
 	public String toString() {
-		return "Furniture [color=" + color + ", price=" + price + "]";
-	}
-
-	public void setKind(IFurnitureStyle kind) {
-		this.kind = kind;
+		return this.getStyle().getStyleName() + " bir " + this.getName() + " [Renk=" + color + ", Fiyat=" + price  + ", Stil Bilgisi=" + this.getStyleInfo();
 	}
 
 	public String getColor() {
@@ -32,5 +38,9 @@ public abstract class Furniture {
 
 	public int getPrice() {
 		return price;
+	}
+
+	public void setStyle(IFurnitureStyle style) {
+		this.style = style;
 	}
 }
